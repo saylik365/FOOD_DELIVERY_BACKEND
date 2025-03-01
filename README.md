@@ -1,0 +1,1 @@
+I improved the backend by modularizing routes, adding robust error handling, and implementing input validation. I also resolved port conflicts for smoother server operation, making the system more scalable and reliable.
