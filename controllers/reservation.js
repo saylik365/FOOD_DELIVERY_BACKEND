@@ -2,20 +2,22 @@ import ErrorHandler from "../error/error.js";
 import { Reservation } from "../models/reservationSchema.js";
 
 export const sendReservation = async (req, res, next) => {
-  const { firstname, lastname, email, phone, date, time } = req.body;
+  const { firstName, lastName, email, phone, date, time } = req.body;
 
-  // Check if all fields are provided
-  if (!firstname || !lastname || !email || !phone || !date || !time) {
+  if (!firstName || !lastName || !email || !phone || !date || !time) {
     // return next(new ErrorHandler("Please fill all the fields!", 400));
-    return next(new ErrorHandler(400, "Please fill all the fields!"));
-
+    // return next(new ErrorHandler(400, "Please fill all the fields!"));
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all the fields!"
+    });    
   }
 
   try {
     // ✅ Ensure consistency in variable names
     await Reservation.create({
-      firstname,  // Fix variable name
-      lastname,   // Fix variable name
+      firstName,  // Fix variable name
+      lastName,   // Fix variable name
       email,
       phone,
       date,
